@@ -2,8 +2,7 @@ import express, { Express } from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
-import { config } from '@src/config/config'
-import routes from '@src/api/routes'
+import config from '@src/config/config'
 
 const app: Express = express()
 
