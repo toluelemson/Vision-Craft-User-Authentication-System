@@ -3,6 +3,8 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
 import config from '@src/config/config'
+import routes from '@src/api/components/auth/user.routes'
+import { notFoundErrorHandler, internalErrorHandler } from '@src/api/middleware/error'
 
 const app: Express = express()
 
@@ -35,13 +37,8 @@ app.use('/', routes)
  *                               Express Error Handling
  ********************************************************************************** */
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, _req: express.Request, res: express.Response) => {
-  return res.status(500).json({
-    errorName: err.name,
-    message: err.message,
-    stack: err.stack || 'no stack defined',
-  })
-})
+app.use(notFoundErrorHandler)
+
+app.use(internalErrorHandler)
 
 export default app
