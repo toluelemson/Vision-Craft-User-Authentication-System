@@ -12,6 +12,12 @@ const generateHash = async (password: string, saltRounds: number): Promise<strin
     })
   })
 
+const verifyHash = async (password: string, hash: string): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    bcryptjs.compare(password, hash, (err, result) => {
+      if (result) resolve(result)
+      reject(new Error(`Password is Mismatched`))
+    })
   })
 }
 
