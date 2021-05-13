@@ -4,6 +4,11 @@ import sterilizeUser from '@src/functions/utils'
 import User from './user.entity'
 import { userData } from './user.interface'
 
+const getUsers = async () => {
+  const users = await Object.assign(getRepository(User)).find()
+  return users
+}
+
 const getUserByEmail = async (email: string) => {
   try {
     return (
@@ -14,6 +19,7 @@ const getUserByEmail = async (email: string) => {
     return e
   }
 }
+
 const createUser = async ({ firstName, lastName, email, password }: userData) => {
   const newUser = new User()
   newUser.firstName = firstName
@@ -30,8 +36,19 @@ const createUser = async ({ firstName, lastName, email, password }: userData) =>
   }
 }
 
+const loginUser = async (email: string, password: string) => {
+  const user = await getUserByEmail(email)
+  try {
+    await verifyHash(password, user.password)
+    return user
+  } catch (e) {
+    throw new Error(e)
+  }
+}
+
 export default {
   getUsers,
   getUserByEmail,
   createUser,
+  loginUser,
 }

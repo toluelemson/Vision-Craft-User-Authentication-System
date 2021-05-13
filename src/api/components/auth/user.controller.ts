@@ -29,4 +29,18 @@ const register: IController = async (req, res) => {
   }
 }
 
+// @desc	Login user
+// @route 	GET /auth/login
+// @access	Public
+const login: IController = async (req, res) => {
+  const { email, password }: IUserLogin = req.body
+  try {
+    const user = await userService.loginUser(email, password)
+    signJWT(user, (error: Error | null, token) => {
+      ApiResponse.result(res, user.firstName, httpStatusCodes.CREATED, token)
+    })
+  } catch (error) {
+    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message ?? error)
+  }
+}
 export default { getUsers, register, login }
