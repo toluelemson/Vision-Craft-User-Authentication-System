@@ -7,6 +7,18 @@ import userService from './user.service'
 // @desc	Register user
 // @route 	POST /auth/register
 // @access	Public
+const getUsers: IController = async (req, res) => {
+  try {
+    const user = await userService.getUsers()
+    ApiResponse.result(res, user, httpStatusCodes.CREATED)
+  } catch (error) {
+    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message)
+  }
+}
+
+// @desc	Register user
+// @route 	POST /auth/register
+// @access	Public
 const register: IController = async (req, res) => {
   try {
     const user = await userService.createUser(req.body)

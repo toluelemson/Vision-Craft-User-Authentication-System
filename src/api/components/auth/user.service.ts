@@ -4,6 +4,16 @@ import sterilizeUser from '@src/functions/utils'
 import User from './user.entity'
 import { userData } from './user.interface'
 
+const getUserByEmail = async (email: string) => {
+  try {
+    return (
+      (await getRepository(User).findOne({ email })) ??
+      Promise.reject(new Error(`User with email: ${email} does not exist`))
+    )
+  } catch (e) {
+    return e
+  }
+}
 const createUser = async ({ firstName, lastName, email, password }: userData) => {
   const newUser = new User()
   newUser.firstName = firstName
@@ -21,5 +31,7 @@ const createUser = async ({ firstName, lastName, email, password }: userData) =>
 }
 
 export default {
+  getUsers,
+  getUserByEmail,
   createUser,
 }
