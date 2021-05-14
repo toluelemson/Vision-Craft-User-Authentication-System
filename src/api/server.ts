@@ -4,7 +4,11 @@ import helmet from 'helmet'
 import cors from 'cors'
 import config from '@src/config/config'
 import routes from '@src/api/components/auth/user.routes'
-import { notFoundErrorHandler, internalErrorHandler } from '@src/api/middleware/error'
+import {
+  notFoundErrorHandler,
+  internalErrorHandler,
+  joiErrorHandler,
+} from '@src/api/middleware/errorHandler.middleware'
 
 const app: Express = express()
 
@@ -36,6 +40,9 @@ app.use('/', routes)
 /** **********************************************************************************
  *                               Express Error Handling
  ********************************************************************************** */
+
+// Joi Error Handler
+app.use(joiErrorHandler)
 
 app.use(notFoundErrorHandler)
 
