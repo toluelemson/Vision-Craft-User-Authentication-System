@@ -1,6 +1,6 @@
 import httpStatusCodes from 'http-status-codes'
-import ApiResponse from '@src/functions/apiResponse'
-import { signJWT } from '@src/functions/encryptionUtils'
+import ApiResponse from '@src/functions/api.response'
+import { signJWT } from '@src/functions/encryption.utils'
 import { IUserLogin, IController } from './user.interface'
 import userService from './user.service'
 
@@ -24,7 +24,6 @@ const register: IController = async (req, res) => {
     const user = await userService.createUser(req.body)
     ApiResponse.result(res, user, httpStatusCodes.CREATED)
   } catch (e) {
-    console.log(e)
     ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message)
   }
 }

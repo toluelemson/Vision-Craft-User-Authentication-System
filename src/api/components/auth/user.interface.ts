@@ -19,17 +19,6 @@ export interface userData {
   password: string
 }
 
-export interface IMySQLResult {
-  fieldCount: number
-  affectedRows: number
-  insertId: number
-  serverStatus: number
-  warningCount: number
-  message: string
-  protocol41: boolean
-  changedRows: number
-}
-
 export interface IController {
   // eslint-disable-next-line no-unused-vars
   (req: Request, res: Response, next: NextFunction): void
