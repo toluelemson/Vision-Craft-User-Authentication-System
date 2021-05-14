@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm'
-import { generateHash, verifyHash } from '@src/functions/encryptionUtils'
-import sterilizeUser from '@src/functions/utils'
+import { generateHash, verifyHash } from '@src/functions/encryption.utils'
+import sterilizeUser from '@src/functions/sterilizeUsers.utils'
 import User from './user.entity'
 import { userData } from './user.interface'
 

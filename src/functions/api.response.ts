@@ -19,7 +19,6 @@ class ApiResponse extends Error {
   }
 
   static error = (res: Response, status = 400, error: string = httpStatusCodes.getStatusText(status)): void => {
-    console.log(error)
     res.status(status).json({
       error: {
         message: error,
