@@ -1,12 +1,13 @@
-import config from './src/config/config'
+import config from './config/config'
 
 const ormconfig = {
+  name: 'development',
   type: 'mysql',
   host: config.MYSQL.host || '127.0.0.1',
   port: config.MYSQL.port || 8080,
   username: config.MYSQL.user || 'root',
   password: config.MYSQL.pass || '',
-  database: config.MYSQL.database || 'db',
+  database: config.MYSQL.database || 'uas',
   synchronize: false,
   logging: false,
   entities: ['src/entity/**/*.ts'],
