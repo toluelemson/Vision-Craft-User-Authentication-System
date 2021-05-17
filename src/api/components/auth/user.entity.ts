@@ -1,8 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique, BeforeInsert } from 'typeorm'
 import { v4 as uuid } from 'uuid'
+import DateTimeEntity from '../../../entity/dateTime.entity'
 
 @Entity('user_auth', { orderBy: { id: 'ASC' } })
-class User {
+class User extends DateTimeEntity {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id!: number
 
