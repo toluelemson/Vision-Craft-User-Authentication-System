@@ -29,4 +29,9 @@ describe('Test User Auth routes', () => {
       .end(done)
   })
 
+  it('User register with invalid body', async (done: CallbackHandler) => {
+    userService.createUser = jest.fn().mockReturnValue({ email: 'test@test.com' })
+
+    request(app.use(routes)).post('/register').expect(400).end(done)
+  })
 })
