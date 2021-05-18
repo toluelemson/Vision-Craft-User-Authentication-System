@@ -34,4 +34,18 @@ describe('Test User Auth routes', () => {
 
     request(app.use(routes)).post('/register').expect(400).end(done)
   })
+
+  it('User register with invalid user', async (done: CallbackHandler) => {
+    userService.createUser = jest.fn().mockReturnValue({ error: 'www' })
+    request(app.use(routes))
+      .post('/register')
+      .send({
+        email: 'testtest.com',
+        password: '123456',
+        firstName: 'test ',
+        lastName: 'test',
+      })
+      .expect(400)
+      .end(done)
+  })
 })
