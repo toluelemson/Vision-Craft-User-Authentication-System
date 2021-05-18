@@ -49,4 +49,21 @@ describe('User service', () => {
       firstName: user.firstName,
       lastName: user.lastName,
     })
+    expect(actual.email).toBe('test@test.com')
+    // @ts-ignore
+    expect(actual.password).toBe(undefined)
+    expect(actual.firstName).toBe(user.firstName)
+    expect(actual.lastName).toBe(user.lastName)
+    expect(actual.email).toBe(user.email)
+    expect(typeorm.getRepository(User).save).toHaveBeenCalledTimes(1)
+    expect(typeorm.getRepository(User).save).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: user.email,
+        password: expect.any(String),
+        firstName: user.firstName,
+        lastName: user.lastName,
+      })
+    )
+  })
+
 })
