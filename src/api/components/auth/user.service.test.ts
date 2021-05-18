@@ -19,3 +19,34 @@ describe('User service', () => {
     })
   })
 
+  test('getUserByEmail with non-existing user', async () => {
+    // @ts-ignore
+    typeorm.getRepository = jest.fn().mockReturnValue({
+      findOne: jest.fn().mockImplementation(() => {
+        throw new Error()
+      }),
+    })
+    const actual = UserService.getUserByEmail('test@test.com')
+    await expect(actual).rejects.toThrow()
+    // @ts-ignore
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledTimes(1)
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledWith({
+      email: 'test@test.com',
+    })
+  })
+
+  test('createUser', async () => {
+    const user = {
+      firstName: 'User',
+      lastName: 'Test',
+      email: 'test@test.com',
+      password: '123',
+    }
+    mockRepository(user)
+    const actual = await UserService.createUser({
+      email: user.email,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    })
+})
