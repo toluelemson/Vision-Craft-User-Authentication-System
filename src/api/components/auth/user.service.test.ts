@@ -66,4 +66,27 @@ describe('User service', () => {
     )
   })
 
+  test('emailUser with non-existing user', async () => {
+    const user = {
+      firstName: 'User',
+      lastName: 'Test',
+      email: 'test@test.com',
+      password: '123',
+    }
+    // @ts-ignore
+    typeorm.getRepository = jest.fn().mockReturnValue({
+      findOne: jest.fn().mockImplementation(() => {
+        throw new Error('Password is Mismatched')
+      }),
+      save: jest.fn().mockReturnValue(null),
+    })
+    const actual = UserService.loginUser(user.email, user.password)
+    await expect(actual).rejects.toThrow('Password is Mismatched')
+    // @ts-ignore
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledTimes(1)
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledWith({
+      email: user.email,
+    })
+    expect(typeorm.getRepository(User).save).toHaveBeenCalledTimes(0)
+  })
 })
