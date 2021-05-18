@@ -12,14 +12,25 @@ export interface IUserLogin {
   password: string
 }
 
-export interface userData {
-  firstName: string
+export interface IUserData {
+  id: number
   email: string
+  firstName: string
   lastName: string
-  password: string
+  uuid: string
+  lastLogin: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface IController {
   // eslint-disable-next-line no-unused-vars
   (req: Request, res: Response, next: NextFunction): void
+}
+
+export interface IUserRegsiter {
+  firstName: string
+  email: string
+  lastName: string
+  password: string
 }

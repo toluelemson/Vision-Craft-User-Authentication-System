@@ -1,9 +1,9 @@
 import { Response } from 'express'
 import httpStatusCodes from 'http-status-codes'
-import { userData } from '@src/api/components/auth/user.interface'
+import { IUserData } from '@src/api/components/auth/user.interface'
 
 class ApiResponse extends Error {
-  static result = (res: Response, data: userData, status = 200, token?: string | null): void => {
+  static result = (res: Response, data: IUserData | string, status = 200, token?: string | null): void => {
     res.status(status)
     if (token) {
       res.json({

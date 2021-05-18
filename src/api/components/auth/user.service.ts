@@ -2,7 +2,7 @@ import { getRepository } from 'typeorm'
 import { generateHash, verifyHash } from '@src/functions/encryption.utils'
 import sterilizeUser from '@src/functions/sterilizeUsers.utils'
 import User from './user.entity'
-import { userData } from './user.interface'
+import { IUserRegister } from './user.interface'
 
 const getUsers = async () => {
   const users = await Object.assign(getRepository(User)).find()
@@ -10,17 +10,13 @@ const getUsers = async () => {
 }
 
 const getUserByEmail = async (email: string) => {
-  try {
-    return (
-      (await getRepository(User).findOne({ email })) ??
-      Promise.reject(new Error(`User with email: ${email} does not exist`))
-    )
-  } catch (e) {
-    return e
-  }
+  return (
+    (await getRepository(User).findOne({ email })) ??
+    Promise.reject(new Error(`User with email: ${email} does not exist`))
+  )
 }
 
-const createUser = async ({ firstName, lastName, email, password }: userData) => {
+const createUser = async ({ firstName, lastName, email, password }: IUserRegister) => {
   const newUser = new User()
   newUser.firstName = firstName
   newUser.lastName = lastName
@@ -32,18 +28,15 @@ const createUser = async ({ firstName, lastName, email, password }: userData) =>
   } catch (e) {
     if (e.code === 'ER_DUP_ENTRY') throw new Error(`EMAIL ALREADY EXISTS`)
     if (e.code === 'ER_NO_DEFAULT_FOR_FIELD') throw new Error('CHECK ALL FIELDS')
-    return e
+    throw new Error(e)
   }
 }
 
 const loginUser = async (email: string, password: string) => {
   const user = await getUserByEmail(email)
-  try {
-    await verifyHash(password, user.password)
-    return user
-  } catch (e) {
-    throw new Error(e)
-  }
+  const result = await verifyHash(password, user.password)
+  if (result) return user.firstName
+  throw Error('error')
 }
 
 export default {

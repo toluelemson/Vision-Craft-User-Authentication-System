@@ -4,15 +4,15 @@ import { signJWT } from '@src/functions/encryption.utils'
 import { IUserLogin, IController } from './user.interface'
 import userService from './user.service'
 
-// @desc	Register user
-// @route 	POST /auth/register
+// @desc	Get user
+// @route 	GET /auth/
 // @access	Public
 const getUsers: IController = async (req, res) => {
   try {
     const user = await userService.getUsers()
     ApiResponse.result(res, user, httpStatusCodes.CREATED)
-  } catch (error) {
-    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message)
+  } catch (e) {
+    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message)
   }
 }
 
@@ -34,12 +34,12 @@ const register: IController = async (req, res) => {
 const login: IController = async (req, res) => {
   const { email, password }: IUserLogin = req.body
   try {
-    const user = await userService.loginUser(email, password)
+    const user = (await userService.loginUser(email, password)) || ''
     signJWT(user, (error: Error | null, token) => {
-      ApiResponse.result(res, user.firstName, httpStatusCodes.CREATED, token)
+      ApiResponse.result(res, user, httpStatusCodes.CREATED, token)
     })
-  } catch (error) {
-    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message ?? error)
+  } catch (e) {
+    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message ?? e)
   }
 }
 export default { getUsers, register, login }
