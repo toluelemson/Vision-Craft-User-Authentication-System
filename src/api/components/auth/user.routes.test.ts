@@ -48,4 +48,24 @@ describe('Test User Auth routes', () => {
       .expect(400)
       .end(done)
   })
+
+  it('User register with duplicate email', (done: CallbackHandler) => {
+    userService.createUser = jest.fn().mockImplementation(() => {
+      // @ts-ignore
+      throw new Error({ code: 'ER_DUP_ENTRY' })
+    })
+    return request(app.use(routes))
+      .post('/register')
+      .send({
+        email: 'test@test.com',
+        password: '123456',
+        firstName: 'test ',
+        lastName: 'test',
+      })
+      .expect(400)
+      .expect((res: any) => {
+        expect(userService.createUser).toHaveBeenCalledTimes(1)
+      })
+      .end(done)
+  })
 })
