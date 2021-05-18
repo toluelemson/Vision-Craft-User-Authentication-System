@@ -49,6 +49,7 @@ describe('User service', () => {
       firstName: user.firstName,
       lastName: user.lastName,
     })
+
     expect(actual.email).toBe('test@test.com')
     // @ts-ignore
     expect(actual.password).toBe(undefined)
@@ -80,6 +81,25 @@ describe('User service', () => {
       }),
       save: jest.fn().mockReturnValue(null),
     })
+    const actual = UserService.loginUser(user.email, user.password)
+    await expect(actual).rejects.toThrow('Password is Mismatched')
+    // @ts-ignore
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledTimes(1)
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledWith({
+      email: user.email,
+    })
+    expect(typeorm.getRepository(User).save).toHaveBeenCalledTimes(0)
+  })
+
+  test('emailUser with existing user wrong password', async () => {
+    const user = {
+      firstName: 'User',
+      lastName: 'Test',
+      email: 'test@test.com',
+      password: '123',
+    }
+    // @ts-ignore
+    mockRepository(user)
     const actual = UserService.loginUser(user.email, user.password)
     await expect(actual).rejects.toThrow('Password is Mismatched')
     // @ts-ignore
