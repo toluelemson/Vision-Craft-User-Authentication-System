@@ -57,7 +57,7 @@ Add these keys as environment variable
 ###### Run server with jest test
 	yarn test:dev
 ###### Run Server and client
-run:fullstack
+	yarn run:fullstack
 
 #### Test
 ##### Unit & Integration tests
