@@ -44,7 +44,7 @@ Add these keys as environment variable
     yarn create:migration
 
 
-##### Seed data
+##### Seed sample data into db
 	yarn schema:drop
 	yarn schema:sync
 	yarn seed:run
@@ -52,10 +52,12 @@ Add these keys as environment variable
 ##### Deployment
     yarn build-ts
 
-##### Run
+##### Run only server to test backend api
 	yarn dev
-###### Run with tests and seeder tests
+###### Run server with jest test
 	yarn test:dev
+###### Run Server and client
+run:fullstack
 
 #### Test
 ##### Unit & Integration tests
