@@ -1,4 +1,5 @@
 import express from 'express'
+import protect from '../../../middleware/protectRouter.middleware'
 import controller from './user.controller'
 import { loginValidation, registerationValidation } from '../../../middleware/userValidator.middleware'
 
