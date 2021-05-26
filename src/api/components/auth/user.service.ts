@@ -16,6 +16,10 @@ const getUserByEmail = async (email: string) => {
   )
 }
 
+const getUserProfileByID = async (id: string) => {
+  return (await getRepository(User).findOne({ uuid: id })) || Promise.reject(new Error(`User not Found`))
+}
+
 const createUser = async ({ firstName, lastName, email, password }: IUserRegister) => {
   const newUser = new User()
   newUser.firstName = firstName
@@ -35,13 +39,14 @@ const createUser = async ({ firstName, lastName, email, password }: IUserRegiste
 const loginUser = async (email: string, password: string) => {
   const user = await getUserByEmail(email)
   const result = await verifyHash(password, user.password)
-  if (result) return user.firstName
+  if (result) return user
   throw Error('error')
 }
 
 export default {
   getUsers,
   getUserByEmail,
+  getUserProfileByID,
   createUser,
   loginUser,
 }
