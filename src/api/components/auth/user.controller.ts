@@ -6,7 +6,7 @@ import userService from './user.service'
 
 // @desc	Get user
 // @route 	GET /auth/
-// @access	Public
+// @access	Private
 const getUsers: IController = async (req, res) => {
   try {
     const user = await userService.getUsers()
@@ -47,9 +47,9 @@ const register: IController = async (req, res) => {
 const login: IController = async (req, res) => {
   const { email, password }: IUserLogin = req.body
   try {
-    const user = (await userService.loginUser(email, password)) || ''
-    signJWT(user, (error: Error | null, token) => {
-      ApiResponse.result(res, user, httpStatusCodes.CREATED, token)
+    const { firstName, uuid } = (await userService.loginUser(email, password)) || ''
+    signJWT(firstName, (error: Error | null, token) => {
+      return ApiResponse.result(res, { firstName, uuid, email }, httpStatusCodes.CREATED, token)
     })
   } catch (e) {
     ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message ?? e)
