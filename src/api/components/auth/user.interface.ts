@@ -13,14 +13,14 @@ export interface IUserLogin {
 }
 
 export interface IUserData {
-  id: number
-  email: string
-  firstName: string
-  lastName: string
-  uuid: string
-  lastLogin: string
-  createdAt: Date
-  updatedAt: Date
+  id?: number
+  email?: string
+  firstName?: string
+  lastName?: string
+  uuid?: string
+  lastLogin?: string
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export interface IController {
