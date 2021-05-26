@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as typeorm from 'typeorm'
-import UserService from './user.service'
 import mockRepository from '@src//tests/unit/dbMock'
+import UserService from './user.service'
 import User from './user.entity'
 
 describe('User service', () => {
@@ -32,6 +32,36 @@ describe('User service', () => {
     expect(typeorm.getRepository(User).findOne).toHaveBeenCalledTimes(1)
     expect(typeorm.getRepository(User).findOne).toHaveBeenCalledWith({
       email: 'test@test.com',
+    })
+  })
+
+  test('getUserByProfileID with existing user', async () => {
+    mockRepository({ firstName: 'Test', lastName: 'User', email: 'test@test.com' })
+    const actual = await UserService.getUserProfileByID('123')
+    expect(actual.email).toBe('test@test.com')
+    // @ts-ignore
+    expect(actual.password).toBe(undefined)
+    expect(actual.firstName).toBe('Test')
+    expect(actual.lastName).toBe('User')
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledTimes(1)
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledWith({
+      uuid: '123',
+    })
+  })
+
+  test('getUserByProfileID with non-existing user', async () => {
+    // @ts-ignore
+    typeorm.getRepository = jest.fn().mockReturnValue({
+      findOne: jest.fn().mockImplementation(() => {
+        throw new Error()
+      }),
+    })
+    // @ts-ignore
+    const actual = UserService.getUserProfileByID('123')
+    await expect(actual).rejects.toThrow()
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledTimes(1)
+    expect(typeorm.getRepository(User).findOne).toHaveBeenCalledWith({
+      uuid: '123',
     })
   })
 
