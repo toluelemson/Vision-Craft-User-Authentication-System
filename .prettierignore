@@ -2,3 +2,6 @@ dist/
 node_modules/
 coverage/
 build/
+client/node_modules
+client/
+.tsx

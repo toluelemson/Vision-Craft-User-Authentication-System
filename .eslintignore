@@ -2,3 +2,5 @@ dist/
 node_modules/
 coverage/
 migration/
+
+!client/node_modules
