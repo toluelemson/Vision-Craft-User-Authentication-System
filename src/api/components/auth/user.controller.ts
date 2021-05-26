@@ -18,6 +18,19 @@ const getUsers: IController = async (req, res) => {
 
 // @desc	Register user
 // @route 	POST /auth/register
+// @access	Private
+const getUserProfileByID: IController = async (req, res) => {
+  try {
+    const user = await userService.getUserProfileByID(req.params.id)
+    console.log(user)
+    ApiResponse.result(res, user, httpStatusCodes.OK)
+  } catch (e) {
+    ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message)
+  }
+}
+
+// @desc	Register user
+// @route 	POST /auth/register
 // @access	Public
 const register: IController = async (req, res) => {
   try {
@@ -42,4 +55,4 @@ const login: IController = async (req, res) => {
     ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message ?? e)
   }
 }
-export default { getUsers, register, login }
+export default { getUsers, register, login, getUserProfileByID }
