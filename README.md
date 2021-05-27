@@ -54,10 +54,11 @@ Add these keys as environment variable
 
 ##### Run only server to test backend api
 	yarn dev
-###### Run server with jest test
-	yarn test:dev
 ###### Run Server and client
-	yarn run:fullstack
+yarn run:fullstack
+###### Spin up the entire app (backend tests, migration, data seeds, backend, client)
+	yarn test:dev
+
 
 #### Test
 ##### Unit & Integration tests
