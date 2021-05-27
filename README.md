@@ -24,12 +24,16 @@ This section lists the frameworks that is used to built this project using.
 
 Create .env file in root folder and add these keys as environment variable
 
-`MYSQL_HOST`: Database host
-`MYSQL_PORT`= Api server port(default = 8080)
-`MYSQL_USER`= Database User
-`MYSQL_PASSWORD`= Database Password
-`MYSQL_DATABASE`= Database name
-`PORT`: Api server port(default = 8080)
+`MYSQL_HOST`: <Database host>
+
+`MYSQL_PORT`= <Api server port(default = 8080)>
+
+`MYSQL_USER`= <Database User>
+
+`MYSQL_PASSWORD`= <Database Password>
+
+`MYSQL_DATABASE`= <Database name>
+
 `SKIP_PREFLIGHT_CHECK`= true
 
 ## Getting started:
@@ -40,7 +44,8 @@ In your local MySQL database instance, create a database called `uas`
 
 ###### Then spin up the entire app (backend tests, migration, data seeds, backend, client)
 	`yarn test:dev`
-	
+
+## Others:
 ##### Migration
     yarn generate:migration
     yarn migration:run
