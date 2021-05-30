@@ -144,7 +144,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
                 fullWidth
                 name="confirmPassword"
                 label="Confirm Password"
-                type="confirmPassword"
+                type="password"
                 id="password"
                 autoComplete="confirm-password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
