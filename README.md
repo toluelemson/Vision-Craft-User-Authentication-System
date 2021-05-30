@@ -1,7 +1,11 @@
 # Vision-Craft User Authentication System (UAS)
 
 ## About this Project
-This open-source project allows to login and registers users. User can see a message (“Yay, you’re logged in!”)
+This App allows to login and registers users. After login, Users can see a message (“Yay, you’re logged in!”)
+
+![Login](https://user-images.githubusercontent.com/78776693/120108373-99bf9e00-c16d-11eb-9aa2-c77af34d4692.JPG)
+![Registeration Screen](https://user-images.githubusercontent.com/78776693/120108432-c378c500-c16d-11eb-8acc-bc4ac81aebaf.JPG)
+![welcome](https://user-images.githubusercontent.com/78776693/120108438-c96ea600-c16d-11eb-91eb-de6f9a34a9bc.JPG)
 
 ## This is a Node.js backend that:
 * validates registration data for first name, last name, email and password
