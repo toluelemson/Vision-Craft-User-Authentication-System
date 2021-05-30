@@ -49,19 +49,19 @@ Add these keys as environment variable
 	yarn schema:sync
 	yarn seed:run
 
-##### Deployment
-    yarn build-ts
-
 ##### Run only server to test backend api
 	yarn dev
-###### Run server with jest test
+###### Run only server with test
 	yarn test:dev
-###### Run Server and client
 	yarn run:fullstack
 
 #### Test
-##### Unit & Integration tests
+##### Unit & Integration tests in server
     yarn test
+
+##### Unit & Integration tests in server
+    cd client
+	yarn test
 
 ### Trello board
 
