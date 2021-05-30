@@ -19,9 +19,12 @@ This App allows to login and registers users. After login, Users can see a messa
 
 ### Built With
 This section lists the frameworks that is used to built this project using.
+* [React](https://reactjs.org/#)
+* [Redux](https://redux.js.org/#)
+* [Typescript](https://www.typescriptlang.org/docs/home.html)
 * [Express](https://expressjs.com/)
 * [Typeorm](https://typeorm.io/#/)
-* [Typescript](https://www.typescriptlang.org/docs/home.html)
+* [MySql](https://www.mysql.com/)
 * [Express JWT](https://www.npmjs.com/package/express-jwt)
 
 ## Enviroment Variables:
