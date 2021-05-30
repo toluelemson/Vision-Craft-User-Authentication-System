@@ -19,12 +19,14 @@ This App allows to login and registers users. After login, Users can see a messa
 
 ### Built With
 This section lists the frameworks that is used to built this project using.
+* [Material UI](https://material-ui.com/)
 * [React](https://reactjs.org/#)
 * [Redux](https://redux.js.org/#)
 * [Typescript](https://www.typescriptlang.org/docs/home.html)
 * [Express](https://expressjs.com/)
 * [Typeorm](https://typeorm.io/#/)
 * [MySql](https://www.mysql.com/)
+* [Jest](https://jestjs.io/)
 * [Express JWT](https://www.npmjs.com/package/express-jwt)
 
 ## Enviroment Variables:
