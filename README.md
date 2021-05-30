@@ -22,44 +22,40 @@ This section lists the frameworks that is used to built this project using.
 
 ## Enviroment Variables:
 
-Add these keys as environment variable
+Create .env file in root folder and add these keys as environment variable
 
-`TOKEN_SECRET_KEY`: Use to sign jwt tokens
+`MYSQL_HOST`: <Database host>
 
-`DB_HOST`: Database host
+`MYSQL_PORT`= <Api server port(default = 8080)>
 
-`DB_USER`: Database User
+`MYSQL_USER`= <Database User>
 
-`DB_PASSWORD`: Database Password
+`MYSQL_PASSWORD`= <Database Password>
 
-`DB_NAME`: Database name
+`MYSQL_DATABASE`= <Database name>
 
-`PORT`: Api server port(default = 8080)
+`SKIP_PREFLIGHT_CHECK`= true
 
 ## Getting started:
+In your local MySQL database instance, create a database called `uas`
 
+###### Install dependencies:
+	yarn
+
+###### Then spin up the entire app (backend tests, migration, data seeds, backend, client)
+	`yarn test:dev`
+
+## Others:
 ##### Migration
     yarn generate:migration
     yarn migration:run
     yarn create:migration
 
-
-##### Seed sample data into db
-	yarn schema:drop
-	yarn schema:sync
-	yarn seed:run
-
-##### Run only server to test backend api
-	yarn dev
-###### Run only server with test
-	yarn test:dev
-	yarn run:fullstack
-
 #### Test
-##### Unit & Integration tests in server
+##### Backend Unit & Integration tests
     yarn test
 
-##### Unit & Integration tests in server
+##### Client Unit & Integration tests
     cd client
 	yarn test
 
