@@ -15,3 +15,6 @@ This section lists the frameworks that is used to built this project using.
 
 ##### Run
 	yarn start
+
+#### Test
+	yarn test

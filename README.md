@@ -42,7 +42,10 @@ In your local MySQL database instance, create a database called `uas`
 ###### Install dependencies:
 	yarn
 
-###### Then spin up the entire app (backend tests, migration, data seeds, backend, client)
+###### spin up the entire app without tests
+	`yarn run:app
+
+###### Then spin up the entire app with (backend tests, data seeds, server, client)
 	`yarn test:dev`
 
 ## Others:
