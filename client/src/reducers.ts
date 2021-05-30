@@ -3,7 +3,7 @@ import {
   userLoginReducer,
   userRegisterReducer,
   userDetailsReducer,
-} from './store/Auth/reducers/auth.reducer'
+} from './store/Auth/reducers/authReducer'
 
 export default combineReducers({
   userLogin: userLoginReducer,

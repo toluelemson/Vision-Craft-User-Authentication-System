@@ -9,7 +9,7 @@ import {
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
-} from './auth.contants'
+} from './authContants'
 
 export type ILogin = {
   email: string

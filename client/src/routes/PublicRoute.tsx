@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
-import { isLogin } from '../utils'
+import isLogin from '../utils/isLogin'
 
 const PublicRoute: React.FC<RouteProps | any> = ({
   component: Component,

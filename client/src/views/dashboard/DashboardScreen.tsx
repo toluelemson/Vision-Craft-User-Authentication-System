@@ -12,12 +12,12 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Deposits from '../components/dashboard/Deposits'
-import NavBar from '../components/Navbar'
-import { getUserDetails } from '../store/Auth/auth.actions'
-import Footer from '../components/Footer'
-import Chart from '../components/dashboard/Charts'
-import { RootStore } from '../store'
+import Deposits from '../../components/dashboard/Deposits'
+import NavBar from '../../components/layout/Navbar'
+import { getUserDetails } from '../../store/Auth/authActions'
+import Footer from '../../components/layout/Footer'
+import Chart from '../../components/dashboard/Charts'
+import { RootStore } from '../../store'
 
 const drawerWidth = 240
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +77,6 @@ const Dashboard: React.SFC<RouteComponentProps> = () => {
     shallowEqual,
   )
   const userData = userDetails.userInfo
-  console.log(userData)
   useEffect(() => {
     // if user logs in, pull full user data
     if (!userData.data.uuid) dispatch(getUserDetails(`profile/${loginInfo.data.uuid}`))

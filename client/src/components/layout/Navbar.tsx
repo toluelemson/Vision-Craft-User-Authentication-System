@@ -9,8 +9,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
-import { logout } from '../store/Auth/auth.actions'
-import { RootStore } from '../store'
+import { logout } from '../../store/Auth/authActions'
+import { RootStore } from '../../store'
 
 const drawerWidth = 0
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NavBar: React.SFC<RouteComponentProps> = ({ history, location }) => {
+export const NavBar: React.SFC<RouteComponentProps> = ({ history, location }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RouteComponentProps, Link, Redirect } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import { Alert } from '@material-ui/lab'
@@ -11,11 +11,11 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import NavBar from '../components/Navbar'
+import NavBar from '../../components/layout/Navbar'
 
-import { login } from '../store/Auth/auth.actions'
-import Footer from '../components/Footer'
-import { RootStore } from '../store'
+import { login } from '../../store/Auth/authActions'
+import Footer from '../../components/layout/Footer'
+import { RootStore } from '../../store'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,11 +47,7 @@ const SignInScreen: React.SFC<RouteComponentProps> = ({
   const [password, setPassword] = useState('')
 
   const userLogin = useSelector((state: RootStore) => state.userLogin)
-  const { error, isAuthenticated } = userLogin
-
-  const redirect = location.search ? location.search.split('=')[1] : '/dashboard'
-
-  if (isAuthenticated) return <Redirect to={redirect} />
+  const { error } = userLogin
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault()
@@ -79,6 +75,7 @@ const SignInScreen: React.SFC<RouteComponentProps> = ({
             name="email"
             autoComplete="email"
             autoFocus
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
@@ -91,6 +88,7 @@ const SignInScreen: React.SFC<RouteComponentProps> = ({
             type="password"
             id="password"
             autoComplete="current-password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
@@ -99,6 +97,7 @@ const SignInScreen: React.SFC<RouteComponentProps> = ({
             variant="contained"
             color="primary"
             className={classes.submit}
+            data-testid="button"
           >
             Sign In
           </Button>

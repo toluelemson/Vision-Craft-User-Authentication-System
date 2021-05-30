@@ -14,13 +14,13 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   USER_LOGOUT,
-} from './auth.contants'
+} from './authContants'
 
 import {
   UserLoginDispatchTypes,
   UserRegisterDispatchTypes,
   UserDetailsDispatchTypes,
-} from './auth.types'
+} from './authTypes'
 
 export type ILogin = {
   email: string

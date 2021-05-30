@@ -9,14 +9,14 @@ import {
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
-} from '../auth.contants'
+} from '../authContants'
 
 import {
   UserLoginDispatchTypes,
   UserRegisterDispatchTypes,
   UserDetailsDispatchTypes,
   //   UserLogOutDispatchTypes,
-} from '../auth.types'
+} from '../authTypes'
 
 import isEmpty from '../../../utils/isEmpty'
 

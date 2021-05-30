@@ -11,10 +11,10 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import NavBar from '../components/Navbar'
-import { register } from '../store/Auth/auth.actions'
-import Footer from '../components/Footer'
-import { RootStore } from '../store'
+import NavBar from '../../components/layout/Navbar'
+import { register } from '../../store/Auth/authActions'
+import Footer from '../../components/layout/Footer'
+import { RootStore } from '../../store'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,7 +51,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
   const userRegister = useSelector((state: RootStore) => state.userRegister)
 
   const { error } = userRegister
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const addUser = (event: React.SyntheticEvent) => {
     event.preventDefault()
     if (password !== confirmPassword) {
       setMessage('Passwords do not matched')
@@ -81,7 +81,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
         </Typography>
         {message && <Alert severity="error">{message}</Alert>}
         {error && <Alert severity="error">{error}</Alert>}
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate onSubmit={addUser}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -92,6 +92,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
                 fullWidth
                 id="firstName"
                 label="First Name"
+                placeholder="First Name"
                 autoFocus
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -105,6 +106,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                placeholder="Last Name"
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Grid>
@@ -117,6 +119,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
@@ -130,6 +133,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
@@ -154,7 +158,7 @@ const RegisterScreen: React.SFC<RouteComponentProps> = ({ history, location }) =
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            SignUp
           </Button>
           <Grid container justify="flex-end">
             <Grid item>

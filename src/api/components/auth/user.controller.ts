@@ -22,7 +22,6 @@ const getUsers: IController = async (req, res) => {
 const getUserProfileByID: IController = async (req, res) => {
   try {
     const user = await userService.getUserProfileByID(req.params.id)
-    console.log(user)
     ApiResponse.result(res, user, httpStatusCodes.OK)
   } catch (e) {
     ApiResponse.error(res, httpStatusCodes.BAD_REQUEST, e.message)

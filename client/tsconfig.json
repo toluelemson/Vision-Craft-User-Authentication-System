@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "src/components/Navbar.tsx", "src/routes/PrivateRoute.tsx", "src/views/Dashboard.screen.tsx"  ]
+, "src/components/navbar/Navbar.tsx", "src/routes/PrivateRoute.tsx", "src/views/dashboard/Dashboard.screen.tsx"  ]
 }
